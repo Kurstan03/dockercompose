@@ -10,7 +10,7 @@ jobs:
           name: Build and Push Docker Image
           command: |
             docker build -t kurstan/docker-tutorial:latest -f Dockerfile .
-            echo “$DOCKERHUB_PASSWORD” | docker login --username kurstan --password-stdin
+            echo "$DOCKERHUB_PASSWORD" | docker login --username kurstan --password-stdin
             docker push kurstan/docker-tutorial:latest
   pull-and-deploy:
     docker:
@@ -19,12 +19,12 @@ jobs:
       - run:
           name: Install SSH And Configure
           command: |
-            echo “$SSH_PRIVATE_KEY” | base64 -d > ./privateKey.pem
+            echo "$SSH_PRIVATE_KEY" | base64 -d > ./privateKey.pem
             chmod 400 privateKey.pem
       - run:
           name: Pull Image and Deploy
           command: |
-            ssh -o “StrictHostKeyChecking=no” -i ./privateKey.pem ubuntu@$HOST '
+            ssh -o "StrictHostKeyChecking=no" -i ./privateKey.pem ubuntu@$HOST '
             sudo docker pull kurstan/docker-tutorial:latest
             sudo docker run -d -p 80:8080 kurstan/docker-tutorial:latest
             '
