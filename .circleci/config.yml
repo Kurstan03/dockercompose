@@ -49,10 +49,10 @@ jobs:
       - run:
           name: Pull Image and Deploy
           command: |
-            ssh -o "StrictHostKeyChecking=no" -i ./erkinbaev.pem ubuntu@$HOST
-            sudo docker pull erkinbaev/my_app-backend:v1
-            sudo docker run -d -p 2020:2020 erkinbaev/my_app-backend:v1
+            ssh -o "StrictHostKeyChecking=no" -i ./erkinbaev.pem ubuntu@$HOST "sudo docker pull kurstan/my_app-backend:v1 && sudo docker run -d -p 2020:2020 kurstan/my_app-backend:v1"
+
 workflows:
+  version: 2
   deploy:
     jobs:
       - build-and-deploy:
