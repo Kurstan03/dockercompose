@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Collections;
 
-/**
- * @author kurstan
- * @created at 14.06.2023 12:04
- */
 public class Swagger {
     private static final String API_KEY = "Bearer Token ";
 
